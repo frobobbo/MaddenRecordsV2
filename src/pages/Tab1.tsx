@@ -1,12 +1,11 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
-import { IonCardContent, IonItem, IonButton, IonIcon, IonFab, IonFabButton, IonThumbnail } from '@ionic/react';
+import { IonCardContent, IonItem, IonButton, IonIcon, IonFab, IonFabButton } from '@ionic/react';
 import { heart, share, add } from 'ionicons/icons';
 
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { FirestoreProvider, FirestoreDocument, FirestoreCollection } from "@react-firebase/firestore";
-import ReactJson from "react-json-view";
+import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
 
 import './Tab1.css';
 
@@ -21,8 +20,6 @@ const config = {
     appId: "1:608505473555:web:50552e677eeb697b3bade6",
     measurementId: "G-42DC5T8RVF"
 };
-
-//import ExploreContainer from '../components/ExploreContainer';
 
 const Tab1: React.FC = () => {
   return (
@@ -95,5 +92,4 @@ const Tab1: React.FC = () => {
     </IonPage>
   );
 };
-
 export default Tab1;
