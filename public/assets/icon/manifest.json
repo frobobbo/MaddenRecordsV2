@@ -1,6 +1,9 @@
 {
-  "short_name": "MaddenRecords",
-  "name": "Madden Records",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "browser",
+  "Scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/assets/icon/icon-72x72.png",
@@ -43,8 +46,5 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "splash_pages": null
 }
