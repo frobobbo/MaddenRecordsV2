@@ -73,7 +73,7 @@ const Tab1: React.FC = () => {
 				  "Loading"
 				);
 			  }}
-
+\
 
 			</FirestoreCollection>
 		</FirestoreProvider>
