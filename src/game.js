@@ -1,6 +1,9 @@
-import React, { useState, useEffect} from React;
+import React from 'react';
 import { IonItem, IonLabel, IonText, IonItemSliding, IonItemOption, IonItemOptions, IonIcon } from '@ionic/react';
 import { document, trash } from 'ionicons/icons';
+import GetTeam from './components/getTeam';
+import GetPlayer from './components/getPlayer';
+import GetTeamLogo from './components/getTeamLogo';
 
 export default function Game({doEdit, doDelete, doc}) {
     let data = doc.data();
@@ -8,17 +11,21 @@ export default function Game({doEdit, doDelete, doc}) {
     return (
         <IonItemSliding>
             <IonItem>
-                <Ionlabel class = "ion-text-wrap">
+                <IonLabel class = "ion-text-wrap">
                     <IonText className = "item-title">
-                        <div>{data.name}</div>
+                       <GetPlayer playerId={data.homePlayer}/>
                     </IonText>
+                    <IonText className = "item-title">
+                        <GetTeam teamId={data.homeTeam}/>
+                    </IonText>
+                    <GetTeamLogo teamId={data.homeTeam} HomeAway="Home" page="GameList"/>
                     <IonText className="item-sub-title">
                         <div>{new Date(data.createdOn) + ""}</div>
                     </IonText>
                     <IonText className="item-id">
                         {doc.id}
                     </IonText>
-                </Ionlabel>
+                </IonLabel>
                 <div></div>
             </IonItem>
             <IonItemOptions>

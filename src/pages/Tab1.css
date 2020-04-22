@@ -15,7 +15,7 @@ ion-content ion-toolbar {
   display: inline-block;
   text-align: center;
 }
-#AwayTeamLogo {
+#AwayTeamLogoMain {
 	border-radius: 10px;
 	width: 80%;
 }
@@ -37,7 +37,7 @@ ion-content ion-toolbar {
   display: inline-block;
   text-align: center;
 }
-#HomeTeamLogo {
+#HomeTeamLogoMain {
 	border-radius: 10px;
 	transform: scaleX(-1);
 	width: 80%;

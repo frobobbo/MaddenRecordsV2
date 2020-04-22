@@ -1,25 +1,7 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonListHeader, IonItem, IonAvatar, IonLabel } from '@ionic/react';
-
-import * as firebase from 'firebase';
-import 'firebase/firestore';
-
-import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonListHeader, IonItem, IonLabel } from '@ionic/react';
 
 import './Tab2.css';
-
-// Firebase Config
-const config = {
-    apiKey: "AIzaSyAnLok7gkB-Gsgqsz38BK8rFrQj-RZhFOA",
-    authDomain: "maddenrecords-47d61.firebaseapp.com",
-    databaseURL: "https://maddenrecords-47d61.firebaseio.com",
-    projectId: "maddenrecords-47d61",
-    storageBucket: "maddenrecords-47d61.appspot.com",
-    messagingSenderId: "608505473555",
-    appId: "1:608505473555:web:50552e677eeb697b3bade6",
-    measurementId: "G-42DC5T8RVF"
-};
-
 
 const Tab2: React.FC = () => {
   return (
@@ -74,41 +56,8 @@ const Tab2: React.FC = () => {
 			  </IonLabel>
 				<img id="TeamLogo2" src="/assets/teams/DEN.png" alt="listItem" />
 			</IonItem>
-
-
-
 		  </IonList>
 
-		  <IonList>
-			<IonListHeader>
-			  Games
-			</IonListHeader>
-			  
-	
-			<FirestoreProvider {...config} firebase={firebase}>
-				<FirestoreCollection path="/players/" limit={1}>
-				  {d => {
-					return !d.isLoading ? (
-						d.value.map((player: any, i: any) => {
-							return (
-							<IonItem>
-							  <IonAvatar slot="start">
-								<img src="/assets/imgs/avatar-han.png" alt="listItem" />
-							  </IonAvatar>
-							<IonLabel>
-								<h2>{player.FName}</h2>
-								<h2>{player.LName}</h2>
-							</IonLabel>
-							</IonItem>
-							);
-				  })): (
-					  "Loading"
-					);
-				  }}
-				</FirestoreCollection>
-			</FirestoreProvider>
-		  </IonList>
-		 
       </IonContent>
     </IonPage>
   );
