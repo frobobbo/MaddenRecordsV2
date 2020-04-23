@@ -2,37 +2,54 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
+@font-face {
+	font-family: MaddenFont;
+	src: url('/assets/fonts/EASPORTS15.ttf');
+  }
+
 #HeaderImage{
+	height: 100px;
 	position: absolute;
-    width: 100%;
+	width: 100%;
     left: 0;
 	top: 0;
 	bottom: 0;
-    text-align:center;
+	text-align:center;
+	background-color: black;
 }
 #Header{
+	color: white;
   text-align: center;
+  font-family: MaddenFont;
+}
+#CardHeader{
+	background-color:#505050;
+
+}
+#CardContent{
+	background-image: url('/assets/imgs/FordField.png');
+	background-position: center;
+	background-size: cover;
 }
 #RecordsHeader{
 	height: 100px;
 
 }
 #RecordsToolBar {
-	height: 10px;
+	height: 50px;
 }
 #RecordsTitle{
 	height: 100px;
 }
 #LastGameCard {
-	background-image: url('/assets/imgs/55-35952-fantasy-football-draft-header-700-1473344615.jpg');
-	background-size: contain;
+	padding-top: 20px;
 }
 #row {
   width: 100%;
   margin: 0 auto;
 }
 #AwayBlock {
-  width: 50%;
+  width: 45%;
   display: inline-block;
   text-align: center;
 }
@@ -41,20 +58,28 @@ ion-content ion-toolbar {
 	width: 80%;
 }
 #AwayPlayer {
-	width: 50%;
+	width: 45%;
+	padding-bottom: 10px;
 	display: inline-block;
-	font-size: 32px;
+	font-size: 24px;
+	color: white;
 	text-align: center;
+	text-shadow: 0 0 20px #5FA6DC;
+	font-family: MaddenFont;
 }
 #AwayScore {
-	width: 50%;
+	width: 45%;
 	display: inline-block;
 	font-size: 32px;
 	text-align: center;
+	color: white;
+	text-align: center;
+	text-shadow: 0 0 20px #5FA6DC;
+	font-family: MaddenFont;
 }
 
 #HomeBlock {
-  width: 50%;
+  width: 45%;
   display: inline-block;
   text-align: center;
 }
@@ -64,14 +89,40 @@ ion-content ion-toolbar {
 	width: 80%;
 }
 #HomeScore {
-	width: 50%;
+	width: 45%;
 	display: inline-block;
 	font-size: 32px;
 	text-align: center;
+	color: white;
+	text-align: center;
+	text-shadow: 0 0 20px #5FA6DC;
+	font-family: MaddenFont;
 }
 #HomePlayer {
-	width: 50%;
+	width: 45%;
 	display: inline-block;
-	font-size: 32px;
+	font-size: 24px;
 	text-align: center;
+	color: white;
+	text-align: center;
+	text-shadow: 0 0 20px #5FA6DC;
+	font-family: MaddenFont;
+}
+
+#ScoreSep{
+	width: 10%;
+	display: inline-block;
+}
+#TeamSep{
+	width: 10%;
+	display: inline-block;
+	text-align: center;
+	font-size: 32px;
+	vertical-align: top;
+	padding-top: 10px;
+	color: white;
+}
+#PlayerSep{
+	width: 10%;
+	display: inline-block;
 }

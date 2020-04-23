@@ -28,9 +28,7 @@ const Tab1: React.FC = () => {
   return (
     <IonPage>
       <IonHeader id="RecordsHeader">
-		  <IonToolbar id="RecordsToolBar">
-          <IonTitle id="RecordsTitle"><div id="HeaderImage" ><img src='/assets/imgs/MaddenRecords.png' alt="HeaderLogo"/></div></IonTitle>
-		  </IonToolbar>
+          <div id="HeaderImage" ><img src='/assets/imgs/MaddenRecords.png' alt="HeaderLogo" height="100px" /></div>
       </IonHeader>
       <IonContent>
          <IonFab vertical="bottom" horizontal="end" slot="fixed">
@@ -49,37 +47,31 @@ const Tab1: React.FC = () => {
             	{games && games.docs.map(game => {
                   return (
 					<IonCard id="MainCard" slot="fixed" key={game.id}>
-					<IonCardHeader>
-						<IonCardTitle><div id="Header">Last Game: {new Intl.DateTimeFormat("en-US", {year: "numeric",month: "long",day: "2-digit"}).format(game.data().createdOn)}</div></IonCardTitle>
+					<IonCardHeader id="CardHeader">
+						<IonCardTitle><div id="Header">{new Intl.DateTimeFormat("en-US", {year: "numeric",month: "long",day: "2-digit"}).format(game.data().createdOn)}</div></IonCardTitle>
 					</IonCardHeader>
-					<IonCardContent>
+					<IonCardContent id="CardContent">
 									<div id="LastGameCard">
 										<div id="row">
 											<div id="AwayPlayer"><GetPlayer playerId={game.data().awayPlayer} /></div>
+											<div id="PlayerSep"></div>
 											<div id="HomePlayer"><GetPlayer playerId={game.data().homePlayer} /></div>
 										</div>
 										<div id="row">
 											<div id="AwayBlock">
 												<GetTeamLogo teamId={game.data().awayTeam} HomeAway="Away" page="Main" />
 											</div>
+											<div id="TeamSep">@</div>
 											<div id="HomeBlock">
 												<GetTeamLogo teamId={game.data().homeTeam} HomeAway="Home" page="Main" />
 											</div>
 										</div>
 										<div id="row">
 											<div id="AwayScore">{game.data().awayScore}</div>
+											<div id="ScoreSep"></div>
 											<div id="HomeScore">{game.data().homeScore}</div>
 										</div>
 									</div>
-						<p>
-							Here’s a small text description for the card component. 
-							Nothing more, nothing less.
-						</p>
-						<IonItem>
-						<IonButton fill="solid">Action</IonButton>
-						<IonIcon icon={heart} slot="end"></IonIcon>
-						<IonIcon icon={share} slot="end"></IonIcon>
-						</IonItem>
 					</IonCardContent>
 					</IonCard>
 					)}
