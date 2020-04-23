@@ -1,10 +1,9 @@
 import React, { useState, useEffect} from 'react';
-import { IonButton, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption  } from '@ionic/react';
+import { IonHeader, IonToolbar, IonButton, IonTitle, IonInput, IonItem, IonContent, IonLabel, IonSelect, IonSelectOption  } from '@ionic/react';
 import firebase from 'firebase/app';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 export default function AddGame({initialValue, clear}) {
-    console.log("Line 7 - Initial Value: " + initialValue);
 
     const [homePlayer, setHomePlayer] = useState("");
     const [awayPlayer, setAwayPlayer] = useState("");
@@ -21,14 +20,17 @@ export default function AddGame({initialValue, clear}) {
     );
 
     useEffect(() => {
-        console.log("Line 64 - in useEffect()");
         if(!loading && initialValue && value.exists) {
             setHomePlayer(value.data().homePlayer);
             setHomeTeam(value.data().homeTeam);
-            setAwayPlayer(value.data().awayPlayer);
-            setAwayTeam(value.data().awayTeam);
             setHomeScore(value.data().homeScore); 
+            setAwayPlayer(value.data().awayPlayer);
+            
             setAwayScore(value.data().awayScore);
+            setTimeout( () => {
+                setAwayTeam(value.data().awayTeam);
+                console.log("AwayTeam: " + value.data().awayTeam)
+             },150);
         } 
     },
     [loading, initialValue, value ]);
@@ -47,26 +49,45 @@ export default function AddGame({initialValue, clear}) {
         }
     );
 
-
     function setUniquePlayer(e, fieldvalue, HomeAway) {
 
-        if (fieldvalue) {
+//childNode0 LocalName: ion-select-option
+//childNode1 LocalName: ion-select-option
+//childNode2 LocalName: input
+
+        if (fieldvalue && e) {
+            console.log("True");
             var selectedPlayer = e.detail.value;
-            var childNode1 = e.srcElement.childNodes[1].value;
-            var childNode2 = e.srcElement.childNodes[2].value;
+            var childNodes = [];
+
+            var i =0;
+            var nodes = e.srcElement.childNodes;
+            nodes.forEach(val => {
+                if(val.localName === "ion-select-option") {
+                    childNodes[i] = val.value;
+                    i++;
+                }
+               });
+
+            console.log(e);
+            console.log("selectedPlayer: " + selectedPlayer);
+            console.log("ChildNode Count: " + childNodes.length)
+            console.log("childNode0: " + childNodes[0]);
+            console.log("childNode1: " + childNodes[1]);
+
             if (HomeAway === "home") {
                 setHomePlayer(selectedPlayer);
-                if (selectedPlayer === childNode1){
-                    setAwayPlayer(childNode2);
+                if (selectedPlayer === childNodes[0]){
+                    setAwayPlayer(childNodes[1]);
                 } else {
-                    setAwayPlayer(childNode1);
+                    setAwayPlayer(childNodes[0]);
                 }
             } else {
                 setAwayPlayer(selectedPlayer);
-                if (selectedPlayer === childNode1){
-                    setHomePlayer(childNode2);
+                if (selectedPlayer === childNodes[0]){
+                    setHomePlayer(childNodes[1]);
                 } else {
-                    setHomePlayer(childNode1);
+                    setHomePlayer(childNodes[0]);
                 }
             }
         }
@@ -116,6 +137,13 @@ export default function AddGame({initialValue, clear}) {
 
     return (
         <>
+        <IonHeader class="ion-no-border">
+        <IonToolbar>
+            <IonTitle>{initialValue ? 'Edit' : 'New'} Game</IonTitle>
+        </IonToolbar>
+        </IonHeader>
+
+        <IonContent fullscreen="true">
             <IonItem key="HomePlayerItemKey">
                 <IonLabel position="floating">Home Player</IonLabel>
                 <IonSelect id="homePlayerSelect" value={homePlayer} placeholder="Select Home Player" interface="action-sheet" onIonChange={e => setUniquePlayer(e, e.detail.value, "home")}>
@@ -159,10 +187,10 @@ export default function AddGame({initialValue, clear}) {
             <IonItem key="AwayTeamItemKey">
                 <IonLabel position="floating">Away Team</IonLabel>
                 <IonSelect value={awayTeam} placeholder="Select Away Team" interface="action-sheet" onIonChange={e => setAwayTeam(e.detail.value)}>
-                {teams && teams.docs.map(t => {
+                {teams && teams.docs.map(t2 => {
                     return (
                         !tloading && (
-                            <IonSelectOption value={t.id} key={t.id}>{t.data().TeamName}</IonSelectOption>
+                            <IonSelectOption value={t2.id} key={t2.id}>{t2.data().TeamName}</IonSelectOption>
                          )
                     );
                 })}
@@ -187,6 +215,7 @@ export default function AddGame({initialValue, clear}) {
                 Cancel
             </IonButton>
 
+        </IonContent>
         </>
     );
 }

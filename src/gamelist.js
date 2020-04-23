@@ -4,7 +4,7 @@ import Game from "./game";
 import firebase from 'firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
-export default function GameList({doEdit}){
+export default function GameList({doEdit, setShowModal}){
     const [value, loading ] = useCollection(
         firebase.firestore().collection("games").orderBy("createdOn"),
         {
@@ -30,6 +30,7 @@ export default function GameList({doEdit}){
                             doEdit = {i => {
                                 closeSlidingItems();
                                 doEdit(i);
+                                setShowModal(true);
                             }}
                             doDelete = {i => {
                                 closeSlidingItems();

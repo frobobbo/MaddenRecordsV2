@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
-import { IonCardContent, IonItem, IonButton, IonIcon, IonFab, IonFabButton } from '@ionic/react';
+import { IonCardContent, IonItem, IonButton, IonIcon, IonFab, IonFabButton, IonModal } from '@ionic/react';
 import { heart, share, add } from 'ionicons/icons';
 
 import firebase from 'firebase';
@@ -9,10 +9,14 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import './Tab1.css';
 import GetPlayer from '../components/getPlayer';
 import GetTeamLogo from '../components/getTeamLogo';
+import AddGame from '../AddGame';
+
 
 
 const Tab1: React.FC = () => {
 
+	const [current, setCurrent] = useState(null);
+	const [showModal, setShowModal] = useState(false);
 	const [games, loading, error] = useCollection(
         firebase.firestore().collection("games").orderBy("createdOn", "desc").limit(1),
         {
@@ -23,17 +27,23 @@ const Tab1: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle><img src='/assets/imgs/madden20.png' alt="HeaderLogo" /></IonTitle>
-        </IonToolbar>
+      <IonHeader id="RecordsHeader">
+		  <IonToolbar id="RecordsToolBar">
+          <IonTitle id="RecordsTitle"><div id="HeaderImage" ><img src='/assets/imgs/MaddenRecords.png' alt="HeaderLogo"/></div></IonTitle>
+		  </IonToolbar>
       </IonHeader>
       <IonContent>
          <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton href="/Add">
-            <IonIcon icon={add} />
+          <IonFabButton>
+            <IonIcon icon={add} onClick={() => setShowModal(true)} />
           </IonFabButton>
         </IonFab>
+		<IonModal isOpen={showModal}>
+			<AddGame initialValue={current} clear={()=>setCurrent(null)} key="adfasdfasdf"/>
+    	    <IonButton onClick={() => setShowModal(false)}>
+			<IonIcon name="close" slot="icon-only"></IonIcon>
+        	</IonButton>
+      	</IonModal>
 		<div>{error && <strong>Error: {JSON.stringify(error)}</strong>}</div>
             	<div>{loading && <span>Document: Loading...</span>}</div>
             	{games && games.docs.map(game => {
@@ -43,7 +53,7 @@ const Tab1: React.FC = () => {
 						<IonCardTitle><div id="Header">Last Game: {new Intl.DateTimeFormat("en-US", {year: "numeric",month: "long",day: "2-digit"}).format(game.data().createdOn)}</div></IonCardTitle>
 					</IonCardHeader>
 					<IonCardContent>
-									<div>
+									<div id="LastGameCard">
 										<div id="row">
 											<div id="AwayPlayer"><GetPlayer playerId={game.data().awayPlayer} /></div>
 											<div id="HomePlayer"><GetPlayer playerId={game.data().homePlayer} /></div>

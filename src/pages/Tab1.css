@@ -1,10 +1,31 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
-#MainCard{
+
+#HeaderImage{
+	position: absolute;
+    width: 100%;
+    left: 0;
+	top: 0;
+	bottom: 0;
+    text-align:center;
 }
 #Header{
   text-align: center;
+}
+#RecordsHeader{
+	height: 100px;
+
+}
+#RecordsToolBar {
+	height: 10px;
+}
+#RecordsTitle{
+	height: 100px;
+}
+#LastGameCard {
+	background-image: url('/assets/imgs/55-35952-fantasy-football-draft-header-700-1473344615.jpg');
+	background-size: contain;
 }
 #row {
   width: 100%;

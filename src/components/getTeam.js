@@ -17,8 +17,6 @@ export default function GetTeam({teamId}) {
             <div>{error && <strong>Error: {JSON.stringify(error)}</strong>}</div>
             <div>{loading && <span>Document: Loading...</span>}</div>
             <div>{team && team.data().TeamName}</div>
-            {team && console.log(team.data())}
-
         </IonText>
      );
 }

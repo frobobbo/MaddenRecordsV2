@@ -1,63 +1,34 @@
-import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonListHeader, IonItem, IonLabel } from '@ionic/react';
-
+import React, {useState} from 'react';
+import { IonFab, IonModal, IonButton, IonFabButton, IonIcon, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {add} from "ionicons/icons";
 import './Tab2.css';
+import GameList from '../gamelist';
+import AddGame from '../AddGame';
 
 const Tab2: React.FC = () => {
+  const [current, setCurrent] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <IonPage>
+        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton onClick={() => setCurrent}>
+            <IonIcon icon={add} />
+          </IonFabButton>
+        </IonFab>
       <IonHeader>
         <IonToolbar>
           <IonTitle><img src='/assets/imgs/madden20.png' alt="HeaderLogo" /></IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
-		<IonList lines="full">
-			<IonListHeader>
-			  Games
-			</IonListHeader>
-
-			<IonItem>
-			<img id="TeamLogo1" src="/assets/teams/DET.png" alt="listItem" />
-			  <IonLabel id={50<52 ? 'teamLLabel' : 'teamWLabel'}>
-				<h2>Brett</h2>
-				<h2>50</h2>
-			  </IonLabel>
-			  <IonLabel id={50>52 ? 'teamLLabel' : 'teamWLabel'}>
-				<h2>Scott</h2>
-				<h2>52</h2>
-			  </IonLabel>
-				<img id="TeamLogo2" src="/assets/teams/CIN.png" alt="listItem" />
-			</IonItem>
-
-			<IonItem>
-			<img id="TeamLogo1" src="/assets/teams/PIT.png" alt="listItem" />
-			  <IonLabel id="team1Label">
-				<h2>Brett</h2>
-				<h2>50</h2>
-			  </IonLabel>
-			  <IonLabel id="team2Label">
-				<h2>Scott</h2>
-				<h2>52</h2>
-			  </IonLabel>
-				<img id="TeamLogo2" src="/assets/teams/SF.png" alt="listItem" />
-			</IonItem>
-
-			<IonItem>
-			<img id="TeamLogo1" src="/assets/teams/SEA.png" alt="listItem" />
-			  <IonLabel id="team1Label">
-				<h2>Brett</h2>
-				<h2>50</h2>
-			  </IonLabel>
-			  <IonLabel id="team2Label">
-				<h2>Scott</h2>
-				<h2>52</h2>
-			  </IonLabel>
-				<img id="TeamLogo2" src="/assets/teams/DEN.png" alt="listItem" />
-			</IonItem>
-		  </IonList>
-
+      <IonModal isOpen={showModal}>
+			<AddGame initialValue={current} clear={()=>setCurrent(null)} key="adfasdfasdf"/>
+    	    <IonButton onClick={() => setShowModal(false)}>
+			<IonIcon name="close" slot="icon-only"></IonIcon>
+        	</IonButton>
+      	</IonModal>
+          <GameList doEdit={setCurrent} setShowModal={setShowModal}/>
       </IonContent>
     </IonPage>
   );
