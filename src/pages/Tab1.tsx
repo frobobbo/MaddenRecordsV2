@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
-import { IonCardContent, IonItem, IonButton, IonIcon, IonFab, IonFabButton, IonModal } from '@ionic/react';
-import { heart, share, add } from 'ionicons/icons';
+import { IonContent, IonHeader, IonPage, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon, IonFab, IonFabButton, IonModal } from '@ionic/react';
+import { add } from 'ionicons/icons';
 
 import firebase from 'firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
@@ -46,7 +45,8 @@ const Tab1: React.FC = () => {
             	<div>{loading && <span>Document: Loading...</span>}</div>
             	{games && games.docs.map(game => {
                   return (
-					<IonCard id="MainCard" slot="fixed" key={game.id}>
+					  <>
+					<IonCard id="MainCard" key={game.id}>
 					<IonCardHeader id="CardHeader">
 						<IonCardTitle><div id="Header">{new Intl.DateTimeFormat("en-US", {year: "numeric",month: "long",day: "2-digit"}).format(game.data().createdOn)}</div></IonCardTitle>
 					</IonCardHeader>
@@ -73,7 +73,18 @@ const Tab1: React.FC = () => {
 										</div>
 									</div>
 					</IonCardContent>
+					</IonCard>		
+
+					<IonCard key={game.id + "records"}>
+					<IonCardHeader >
+						<IonCardTitle>Player Records</IonCardTitle>
+					</IonCardHeader>
+						<IonCardContent>
+							<div>Scott: (200 - 200)</div>
+							<div>Brett: (200 - 200)</div>
+						</IonCardContent>
 					</IonCard>
+					</>
 					)}
 				)}
 		</IonContent>

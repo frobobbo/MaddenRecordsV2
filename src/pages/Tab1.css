@@ -19,15 +19,20 @@ ion-content ion-toolbar {
 }
 #Header{
 	color: white;
-  text-align: center;
-  font-family: MaddenFont;
+	text-align: center;
+	font-family: MaddenFont;
+	text-shadow: 4px 4px 20px black;
+
 }
 #CardHeader{
 	background-color:#505050;
+	background-image: url('/assets/imgs/CrowdHeader.png');
+	background-position: center;
+	background-size: cover;
 
 }
 #CardContent{
-	background-image: url('/assets/imgs/FordField.png');
+	background-image: url('/assets/fields/SEA.jpg');
 	background-position: center;
 	background-size: cover;
 }
@@ -43,6 +48,8 @@ ion-content ion-toolbar {
 }
 #LastGameCard {
 	padding-top: 20px;
+	backdrop-filter: blur(2px);
+
 }
 #row {
   width: 100%;
@@ -52,6 +59,7 @@ ion-content ion-toolbar {
   width: 45%;
   display: inline-block;
   text-align: center;
+  backdrop-filter: blur(2px);
 }
 #AwayTeamLogoMain {
 	border-radius: 10px;
@@ -64,17 +72,17 @@ ion-content ion-toolbar {
 	font-size: 24px;
 	color: white;
 	text-align: center;
-	text-shadow: 0 0 20px #5FA6DC;
+	text-shadow: 4px 4px 20px black;
 	font-family: MaddenFont;
 }
 #AwayScore {
 	width: 45%;
 	display: inline-block;
-	font-size: 32px;
+	font-size: 42px;
 	text-align: center;
 	color: white;
 	text-align: center;
-	text-shadow: 0 0 20px #5FA6DC;
+	text-shadow: 4px 4px 20px black;
 	font-family: MaddenFont;
 }
 
@@ -91,11 +99,11 @@ ion-content ion-toolbar {
 #HomeScore {
 	width: 45%;
 	display: inline-block;
-	font-size: 32px;
+	font-size: 42px;
 	text-align: center;
 	color: white;
 	text-align: center;
-	text-shadow: 0 0 20px #5FA6DC;
+	text-shadow: 4px 4px 20px black;
 	font-family: MaddenFont;
 }
 #HomePlayer {
@@ -105,7 +113,7 @@ ion-content ion-toolbar {
 	text-align: center;
 	color: white;
 	text-align: center;
-	text-shadow: 0 0 20px #5FA6DC;
+	text-shadow: 4px 4px 20px black;
 	font-family: MaddenFont;
 }
 
